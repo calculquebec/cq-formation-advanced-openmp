@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#PBS -N Area
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=0:10:0
+#PBS -V
+
+#PBS -q class
+#PBS -A class
+
+cd $PBS_O_WORKDIR
+
+export OMP_STACKSIZE=2G
+
+for t in 1 2 4 8 12
+do
+
+  # Set the number of threads 
+  export OMP_NUM_THREADS=$t
+
+  ./blockmatrix
+done
